@@ -59,7 +59,7 @@ export default function CommentSection({ camperModelId, initialComments }) {
         </form>
       ) : (
         <p className="text-sm text-slate-600">
-          Per publicar comentaris has d'iniciar sessio. <Link href="/login" className="text-blue-600 underline">Anar a login</Link>
+          Per publicar comentaris has d&apos;iniciar sessio. <Link href="/login" className="text-blue-600 underline">Anar a login</Link>
         </p>
       )}
 

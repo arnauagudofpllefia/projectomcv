@@ -4,7 +4,7 @@ import ContactForm from "@/components/contact/contact-form";
 export default function Home() {
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-14 px-6 py-12">
-      <section className="rounded-2xl border bg-gradient-to-br from-blue-50 to-slate-50 p-8">
+      <section className="rounded-2xl border bg-linear-to-br from-blue-50 to-slate-50 p-8">
         <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">CamperCat</p>
         <h1 className="mt-3 max-w-3xl text-4xl font-bold text-slate-900">Lloguer de furgonetes camper per viure rutes amb llibertat</h1>
         <p className="mt-4 max-w-2xl text-slate-700">

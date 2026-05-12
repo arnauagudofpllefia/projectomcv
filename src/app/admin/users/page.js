@@ -50,7 +50,7 @@ export default function AdminUsersPage() {
 
   return (
     <section className="space-y-4">
-      <h1 className="text-2xl font-bold">Administracio d'usuaris i rols</h1>
+      <h1 className="text-2xl font-bold">Administracio d&apos;usuaris i rols</h1>
       {error && <p className="text-sm text-red-600">{error}</p>}
 
       <ul className="divide-y rounded-lg border bg-white">
