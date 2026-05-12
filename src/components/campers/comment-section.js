@@ -36,15 +36,15 @@ export default function CommentSection({ camperModelId, initialComments }) {
   }
 
   return (
-    <section className="space-y-4 rounded-xl border bg-white p-4 shadow-sm">
-      <h2 className="text-xl font-semibold text-slate-900">Comentaris</h2>
+    <section className="space-y-4 rounded-2xl border border-cyan-100/20 bg-slate-900/65 p-5">
+      <h2 className="text-xl font-semibold text-white">Comentaris</h2>
 
       {session?.user ? (
         <form onSubmit={submitComment} className="space-y-2">
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="min-h-28 w-full rounded border px-3 py-2 text-sm"
+            className="min-h-28 w-full rounded-lg border border-cyan-100/25 bg-slate-950/60 px-3 py-2 text-sm text-slate-100 outline-none ring-cyan-400/30 focus:ring"
             placeholder="Comparteix la teva experiencia amb aquest model"
             required
           />
@@ -52,25 +52,25 @@ export default function CommentSection({ camperModelId, initialComments }) {
           <button
             type="submit"
             disabled={saving}
-            className="rounded bg-blue-600 px-4 py-2 text-white disabled:opacity-50"
+            className="rounded-lg bg-cyan-500 px-4 py-2 font-semibold text-slate-950 disabled:opacity-50"
           >
             {saving ? "Enviant..." : "Publicar comentari"}
           </button>
         </form>
       ) : (
-        <p className="text-sm text-slate-600">
-          Per publicar comentaris has d&apos;iniciar sessio. <Link href="/login" className="text-blue-600 underline">Anar a login</Link>
+        <p className="text-sm text-slate-300">
+          Per publicar comentaris has d&apos;iniciar sessio. <Link href="/login" className="text-cyan-300 underline">Anar a login</Link>
         </p>
       )}
 
       <ul className="space-y-3">
         {comments.length === 0 ? (
-          <li className="text-sm text-slate-500">Encara no hi ha comentaris.</li>
+          <li className="text-sm text-slate-400">Encara no hi ha comentaris.</li>
         ) : (
           comments.map((comment) => (
-            <li key={comment.id} className="rounded border p-3">
-              <p className="text-sm text-slate-800">{comment.content}</p>
-              <p className="mt-1 text-xs text-slate-500">{comment.user.email}</p>
+            <li key={comment.id} className="rounded-lg border border-cyan-100/20 bg-slate-950/45 p-3">
+              <p className="text-sm text-slate-200">{comment.content}</p>
+              <p className="mt-1 text-xs text-slate-400">{comment.user.email}</p>
             </li>
           ))
         )}
