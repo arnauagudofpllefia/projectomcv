@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# IA6 - Landing corporativa de lloguer de campers
 
-## Getting Started
+Projecte full-stack amb Next.js 16 per a una empresa de lloguer de furgonetes camper.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 (App Router)
+- PostgreSQL (Docker)
+- Prisma ORM
+- Auth.js (next-auth, Credentials)
+- Control d'acces per rols (EDITOR i ADMIN)
+
+## Funcionalitats principals
+
+- Landing publica amb proposta de valor.
+- Cataleg de models camper persistit a BD.
+- Detall de model amb comentaris.
+- Comentaris: lectura publica, creacio nomes per usuaris autenticats.
+- Formulari de contacte amb validacio i persistencia.
+- Panell admin per gestionar models (EDITOR/ADMIN).
+- Panell admin per gestionar rols d'usuaris (nomes ADMIN).
+
+## Estructura (resum)
+
+- `src/app/(site)` -> pages publiques (`/`, `/campers`, `/campers/[slug]`, `/login`, `/register`).
+- `src/app/admin` -> backoffice (`/admin/campers`, `/admin/users`).
+- `src/app/api` -> Route Handlers API.
+- `src/controllers/api` -> capa controller.
+- `src/services` -> capa de servei i access a dades.
+- `prisma/schema.prisma` -> model de dades.
+
+## Models de dades
+
+- `User` (email, passwordHash, role)
+- `CamperModel` (fitxa del model, preu, caracteristiques, publicacio)
+- `Comment` (comentari per model i usuari)
+- `ContactRequest` (sollicituds del formulari)
+
+## Variables d'entorn
+
+Crea `.env` amb:
+
+```env
+DATABASE_URL="postgresql://blog:blogsecret@localhost:5432/blogdb?schema=public"
+AUTH_SECRET="canvia-aquest-valor-en-produccio"
+```
+
+## Execucio local
+
+1. Instal lar dependencies:
+
+```bash
+npm install
+```
+
+2. Arrencar PostgreSQL (Docker):
+
+```bash
+docker compose up -d
+```
+
+3. Aplicar migracions:
+
+```bash
+npx prisma migrate dev
+```
+
+4. Generar client Prisma:
+
+```bash
+npx prisma generate
+```
+
+5. Carregar dades de prova:
+
+```bash
+npm run db:seed
+```
+
+6. Iniciar aplicacio:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Credencials de prova
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- ADMIN: `admin@demo.local` / `demo1234`
+- EDITOR: `editor@demo.local` / `editor1234`
+- USER autenticat: `user@demo.local` / `user1234`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Endpoints principals
 
-## Learn More
+- Public:
+	- `GET /api/campers`
+	- `GET /api/campers/[slug]`
+	- `GET /api/comments/[camperModelId]`
+	- `POST /api/contact`
+	- `POST /api/auth/register`
+- Autenticat:
+	- `POST /api/comments`
+- Admin (EDITOR/ADMIN):
+	- `GET/POST /api/admin/models`
+	- `GET/PATCH/DELETE /api/admin/models/[id]`
+- Admin (nomes ADMIN):
+	- `GET /api/admin/users`
+	- `PATCH /api/admin/users/[id]/role`
 
-To learn more about Next.js, take a look at the following resources:
+## Relacio amb sprints IA6
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Sprint 1:
+	- Landing + cataleg + formulari.
+	- BD, migracions i seed operatives.
+- Sprint 2:
+	- API completa (models, comentaris, contacte).
+	- Auth.js i restriccions per rol.
+	- Backoffice de models i rols.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy
 
-## Deploy on Vercel
+- Entorn recomanat: Vercel + PostgreSQL gestionat (Neon/Supabase/Railway).
+- En produccio, executa migracions amb:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npx prisma migrate deploy
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## URL de demo
+
+- Local: `http://localhost:3000`
+- Produccio: pendent de desplegament.
