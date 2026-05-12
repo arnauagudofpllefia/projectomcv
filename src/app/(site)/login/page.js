@@ -11,10 +11,14 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
     setError("");
+    setSuccess("");
+    setIsSubmitting(true);
 
     const res = await signIn("credentials", {
       email,
@@ -24,8 +28,12 @@ function LoginForm() {
 
     if (res?.error) {
       setError("Credencials incorrectes");
+      setIsSubmitting(false);
       return;
     }
+
+    setSuccess("Sessio iniciada correctament. Redirigint...");
+    await new Promise((resolve) => setTimeout(resolve, 900));
 
     let next = searchParams.get("callbackUrl") || "/admin/campers";
     if (!next.startsWith("/")) next = "/admin/campers";
@@ -71,8 +79,13 @@ function LoginForm() {
           />
         </div>
         {error && <p className="text-sm text-red-600">{error}</p>}
-        <button type="submit" className="w-full rounded-lg bg-cyan-500 px-4 py-2.5 font-semibold text-slate-950 hover:bg-cyan-400">
-          Entrar
+        {success && <p className="rounded-lg border border-emerald-300/30 bg-emerald-500/15 px-3 py-2 text-sm text-emerald-200">{success}</p>}
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full rounded-lg bg-cyan-500 px-4 py-2.5 font-semibold text-slate-950 hover:bg-cyan-400 disabled:cursor-not-allowed disabled:opacity-70"
+        >
+          {isSubmitting ? "Accedint..." : "Entrar"}
         </button>
         <p className="text-sm text-slate-300">
           Encara no tens compte? <Link href="/register" className="text-cyan-300 underline">Crea&apos;n un ara</Link>

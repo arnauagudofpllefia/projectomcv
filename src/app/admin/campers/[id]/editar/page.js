@@ -67,37 +67,40 @@ export default function EditCamperPage() {
     router.refresh();
   }
 
-  if (loading) return <p className="text-slate-600">Carregant...</p>;
+  if (loading) return <p className="text-slate-300">Carregant...</p>;
   if (!form) return <p className="text-red-600">{error || "No disponible"}</p>;
 
   return (
-    <section className="space-y-4">
-      <Link href="/admin/campers" className="text-sm text-blue-600 hover:underline">← Tornar a la llista</Link>
-      <h1 className="text-2xl font-bold">Editar model camper</h1>
+    <section className="space-y-4 rounded-2xl border border-cyan-100/20 bg-slate-900/65 p-5 shadow-[0_14px_36px_rgba(0,0,0,0.35)]">
+      <Link href="/admin/campers" className="inline-block text-sm text-cyan-300 hover:text-cyan-200 hover:underline">← Tornar a la llista</Link>
+      <div>
+        <h2 className="text-2xl font-bold text-white">Editar model camper</h2>
+        <p className="text-sm text-slate-300">Actualitza disponibilitat, caracteristiques i fitxa comercial.</p>
+      </div>
 
-      <form onSubmit={submit} className="space-y-4 rounded-lg border bg-white p-4 shadow-sm">
-        <input className="w-full rounded border px-3 py-2" value={form.slug} onChange={(e) => setField("slug", e.target.value)} required />
-        <input className="w-full rounded border px-3 py-2" value={form.name} onChange={(e) => setField("name", e.target.value)} required />
-        <input className="w-full rounded border px-3 py-2" value={form.shortDescription} onChange={(e) => setField("shortDescription", e.target.value)} required />
-        <textarea className="min-h-28 w-full rounded border px-3 py-2" value={form.description} onChange={(e) => setField("description", e.target.value)} required />
+      <form onSubmit={submit} className="space-y-4 rounded-xl border border-slate-700/70 bg-slate-950/45 p-4">
+        <input className="w-full rounded-lg border border-slate-600 bg-slate-900/80 px-3 py-2 text-slate-100 outline-none ring-cyan-400/30 focus:ring" value={form.slug} onChange={(e) => setField("slug", e.target.value)} required />
+        <input className="w-full rounded-lg border border-slate-600 bg-slate-900/80 px-3 py-2 text-slate-100 outline-none ring-cyan-400/30 focus:ring" value={form.name} onChange={(e) => setField("name", e.target.value)} required />
+        <input className="w-full rounded-lg border border-slate-600 bg-slate-900/80 px-3 py-2 text-slate-100 outline-none ring-cyan-400/30 focus:ring" value={form.shortDescription} onChange={(e) => setField("shortDescription", e.target.value)} required />
+        <textarea className="min-h-28 w-full rounded-lg border border-slate-600 bg-slate-900/80 px-3 py-2 text-slate-100 outline-none ring-cyan-400/30 focus:ring" value={form.description} onChange={(e) => setField("description", e.target.value)} required />
         <div className="grid gap-3 sm:grid-cols-3">
-          <input className="rounded border px-3 py-2" type="number" min={1} value={form.dailyPrice} onChange={(e) => setField("dailyPrice", e.target.value)} required />
-          <input className="rounded border px-3 py-2" type="number" min={1} value={form.seats} onChange={(e) => setField("seats", e.target.value)} required />
-          <input className="rounded border px-3 py-2" type="number" min={1} value={form.beds} onChange={(e) => setField("beds", e.target.value)} required />
+          <input className="rounded-lg border border-slate-600 bg-slate-900/80 px-3 py-2 text-slate-100 outline-none ring-cyan-400/30 focus:ring" type="number" min={1} value={form.dailyPrice} onChange={(e) => setField("dailyPrice", e.target.value)} required />
+          <input className="rounded-lg border border-slate-600 bg-slate-900/80 px-3 py-2 text-slate-100 outline-none ring-cyan-400/30 focus:ring" type="number" min={1} value={form.seats} onChange={(e) => setField("seats", e.target.value)} required />
+          <input className="rounded-lg border border-slate-600 bg-slate-900/80 px-3 py-2 text-slate-100 outline-none ring-cyan-400/30 focus:ring" type="number" min={1} value={form.beds} onChange={(e) => setField("beds", e.target.value)} required />
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
-          <input className="rounded border px-3 py-2" value={form.transmission} onChange={(e) => setField("transmission", e.target.value)} required />
-          <input className="rounded border px-3 py-2" value={form.fuelType} onChange={(e) => setField("fuelType", e.target.value)} required />
+          <input className="rounded-lg border border-slate-600 bg-slate-900/80 px-3 py-2 text-slate-100 outline-none ring-cyan-400/30 focus:ring" value={form.transmission} onChange={(e) => setField("transmission", e.target.value)} required />
+          <input className="rounded-lg border border-slate-600 bg-slate-900/80 px-3 py-2 text-slate-100 outline-none ring-cyan-400/30 focus:ring" value={form.fuelType} onChange={(e) => setField("fuelType", e.target.value)} required />
         </div>
-        <input className="w-full rounded border px-3 py-2" value={form.imageUrl} onChange={(e) => setField("imageUrl", e.target.value)} placeholder="URL imatge" />
-        <label className="flex items-center gap-2 text-sm">
+        <input className="w-full rounded-lg border border-slate-600 bg-slate-900/80 px-3 py-2 text-slate-100 outline-none ring-cyan-400/30 focus:ring" value={form.imageUrl} onChange={(e) => setField("imageUrl", e.target.value)} placeholder="URL imatge" />
+        <label className="flex items-center gap-2 text-sm text-slate-200">
           <input type="checkbox" checked={Boolean(form.isPublished)} onChange={(e) => setField("isPublished", e.target.checked)} />
           Publicat
         </label>
 
         {error && <p className="text-sm text-red-600">{error}</p>}
 
-        <button type="submit" disabled={saving} className="rounded bg-blue-600 px-4 py-2 text-white disabled:opacity-50">
+        <button type="submit" disabled={saving} className="rounded-lg bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400 disabled:opacity-50">
           {saving ? "Desant..." : "Desar canvis"}
         </button>
       </form>

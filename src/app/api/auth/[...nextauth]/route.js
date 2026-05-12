@@ -1,3 +1,4 @@
-import { handlers } from "@/auth";
+import nextAuthHandler from "@/auth";
 
-export const { GET, POST } = handlers;
+export const GET = nextAuthHandler;
+export const POST = nextAuthHandler;
