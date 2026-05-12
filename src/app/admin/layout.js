@@ -16,11 +16,14 @@ export default function AdminLayout({ children }) {
   return (
     <>
       <header className="flex flex-wrap items-center gap-4 border-b bg-gray-50 px-4 py-3">
-        <Link href="/blog" className="text-blue-600 hover:underline">
-          Blog public
+        <Link href="/campers" className="text-blue-600 hover:underline">
+          Cataleg public
         </Link>
-        <Link href="/admin/blog" className="font-medium text-gray-900 hover:underline">
-          Articles
+        <Link href="/admin/campers" className="font-medium text-gray-900 hover:underline">
+          Models
+        </Link>
+        <Link href="/admin/users" className="font-medium text-gray-900 hover:underline">
+          Usuaris
         </Link>
         <button
           type="button"
