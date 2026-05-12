@@ -26,8 +26,8 @@ function LoginForm() {
       return;
     }
 
-    let next = searchParams.get("callbackUrl") || "/admin/blog";
-    if (!next.startsWith("/")) next = "/admin/blog";
+    let next = searchParams.get("callbackUrl") || "/admin/campers";
+    if (!next.startsWith("/")) next = "/admin/campers";
     router.push(next);
     router.refresh();
   }
