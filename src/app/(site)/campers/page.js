@@ -23,7 +23,7 @@ export default async function CampersPage() {
         <p className="text-slate-300">No hi ha models disponibles ara mateix.</p>
       ) : (
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {campers.map((camper) => (
+          {campers.map((camper, index) => (
             <li key={camper.id}>
               <Link
                 href={`/campers/${camper.slug}`}
@@ -31,7 +31,14 @@ export default async function CampersPage() {
               >
                 {camper.imageUrl ? (
                   <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-xl">
-                    <Image src={camper.imageUrl} alt={camper.name} fill className="object-cover" />
+                    <Image
+                      src={camper.imageUrl}
+                      alt={camper.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      className="object-cover"
+                    />
                   </div>
                 ) : null}
                 <h2 className="font-semibold text-slate-100">{camper.name}</h2>

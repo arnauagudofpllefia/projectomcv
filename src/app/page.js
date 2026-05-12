@@ -61,12 +61,19 @@ export default async function Home() {
             </Link>
           </div>
           <ul className="grid gap-4 sm:grid-cols-3">
-            {featured.map((camper) => (
+            {featured.map((camper, index) => (
               <li key={camper.id}>
                 <Link href={`/campers/${camper.slug}`} className="block rounded-xl border border-cyan-100/20 bg-slate-950/45 p-4 hover:border-cyan-300/45">
                   {camper.imageUrl ? (
                     <div className="relative mb-3 aspect-[4/3] overflow-hidden rounded-lg">
-                      <Image src={camper.imageUrl} alt={camper.name} fill className="object-cover" />
+                      <Image
+                        src={camper.imageUrl}
+                        alt={camper.name}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 280px"
+                        loading={index === 0 ? "eager" : "lazy"}
+                        className="object-cover"
+                      />
                     </div>
                   ) : null}
                   <h3 className="font-semibold text-slate-100">{camper.name}</h3>

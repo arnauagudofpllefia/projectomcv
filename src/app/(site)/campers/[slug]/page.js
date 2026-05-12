@@ -31,7 +31,13 @@ export default async function CamperDetailPage({ params }) {
         <h1 className="text-4xl font-bold text-white">{camper.name}</h1>
         {camper.imageUrl ? (
           <div className="relative aspect-video overflow-hidden rounded-xl border border-cyan-100/20">
-            <Image src={camper.imageUrl} alt={camper.name} fill className="object-cover" />
+            <Image
+              src={camper.imageUrl}
+              alt={camper.name}
+              fill
+              sizes="(max-width: 1024px) 100vw, 960px"
+              className="object-cover"
+            />
           </div>
         ) : null}
         <p className="text-slate-300">{camper.description}</p>
