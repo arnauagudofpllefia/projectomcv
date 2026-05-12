@@ -25,16 +25,16 @@ export default async function CamperDetailPage({ params }) {
 
   return (
     <section className="space-y-6">
-      <article className="space-y-4 rounded-xl border bg-white p-5 shadow-sm">
-        <p className="text-sm uppercase tracking-wide text-blue-600">Model camper</p>
-        <h1 className="text-3xl font-bold text-slate-900">{camper.name}</h1>
-        <p className="text-slate-700">{camper.description}</p>
-        <div className="grid gap-2 text-sm text-slate-700 sm:grid-cols-2">
-          <p><span className="font-semibold">Preu orientatiu:</span> {camper.dailyPrice} EUR/dia</p>
-          <p><span className="font-semibold">Places:</span> {camper.seats}</p>
-          <p><span className="font-semibold">Llits:</span> {camper.beds}</p>
-          <p><span className="font-semibold">Transmissio:</span> {camper.transmission}</p>
-          <p><span className="font-semibold">Combustible:</span> {camper.fuelType}</p>
+      <article className="space-y-5 rounded-2xl border border-cyan-100/20 bg-slate-900/65 p-6">
+        <p className="text-sm uppercase tracking-[0.18em] text-cyan-300">Fitxa de model</p>
+        <h1 className="text-4xl font-bold text-white">{camper.name}</h1>
+        <p className="text-slate-300">{camper.description}</p>
+        <div className="grid gap-2 text-sm sm:grid-cols-2">
+          <p className="text-slate-200"><span className="font-semibold text-cyan-200">Preu orientatiu:</span> {camper.dailyPrice} EUR/dia</p>
+          <p className="text-slate-200"><span className="font-semibold text-cyan-200">Places:</span> {camper.seats}</p>
+          <p className="text-slate-200"><span className="font-semibold text-cyan-200">Llits:</span> {camper.beds}</p>
+          <p className="text-slate-200"><span className="font-semibold text-cyan-200">Transmissio:</span> {camper.transmission}</p>
+          <p className="text-slate-200"><span className="font-semibold text-cyan-200">Combustible:</span> {camper.fuelType}</p>
         </div>
       </article>
 

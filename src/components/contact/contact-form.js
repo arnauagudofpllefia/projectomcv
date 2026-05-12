@@ -39,26 +39,26 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-3 rounded-xl border bg-white p-4 shadow-sm">
+    <form onSubmit={onSubmit} className="space-y-3 rounded-2xl border border-cyan-100/20 bg-slate-900/65 p-5 shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
       <div>
-        <label className="block text-sm font-medium">Nom</label>
-        <input className="mt-1 w-full rounded border px-3 py-2" value={name} onChange={(e) => setName(e.target.value)} required />
+        <label className="block text-sm font-medium text-slate-200">Nom</label>
+        <input className="mt-1 w-full rounded-lg border border-cyan-100/25 bg-slate-950/60 px-3 py-2 text-slate-100 outline-none ring-cyan-400/30 focus:ring" value={name} onChange={(e) => setName(e.target.value)} required />
       </div>
       <div>
-        <label className="block text-sm font-medium">Email</label>
-        <input className="mt-1 w-full rounded border px-3 py-2" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <label className="block text-sm font-medium text-slate-200">Email</label>
+        <input className="mt-1 w-full rounded-lg border border-cyan-100/25 bg-slate-950/60 px-3 py-2 text-slate-100 outline-none ring-cyan-400/30 focus:ring" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
       </div>
       <div>
-        <label className="block text-sm font-medium">Telefon (opcional)</label>
-        <input className="mt-1 w-full rounded border px-3 py-2" value={phone} onChange={(e) => setPhone(e.target.value)} />
+        <label className="block text-sm font-medium text-slate-200">Telefon (opcional)</label>
+        <input className="mt-1 w-full rounded-lg border border-cyan-100/25 bg-slate-950/60 px-3 py-2 text-slate-100 outline-none ring-cyan-400/30 focus:ring" value={phone} onChange={(e) => setPhone(e.target.value)} />
       </div>
       <div>
-        <label className="block text-sm font-medium">Missatge</label>
-        <textarea className="mt-1 min-h-28 w-full rounded border px-3 py-2" value={message} onChange={(e) => setMessage(e.target.value)} required />
+        <label className="block text-sm font-medium text-slate-200">Missatge</label>
+        <textarea className="mt-1 min-h-28 w-full rounded-lg border border-cyan-100/25 bg-slate-950/60 px-3 py-2 text-slate-100 outline-none ring-cyan-400/30 focus:ring" value={message} onChange={(e) => setMessage(e.target.value)} required />
       </div>
       {error && <p className="text-sm text-red-600">{error}</p>}
-      {ok && <p className="text-sm text-emerald-700">Sollicitud enviada correctament.</p>}
-      <button type="submit" disabled={saving} className="rounded bg-blue-600 px-4 py-2 text-white disabled:opacity-50">
+      {ok && <p className="text-sm text-emerald-300">Sollicitud enviada correctament.</p>}
+      <button type="submit" disabled={saving} className="rounded-lg bg-cyan-500 px-4 py-2 font-semibold text-slate-950 disabled:opacity-50">
         {saving ? "Enviant..." : "Enviar sollicitud"}
       </button>
     </form>
