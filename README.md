@@ -45,6 +45,22 @@ DATABASE_URL="postgresql://blog:blogsecret@localhost:5432/blogdb?schema=public"
 AUTH_SECRET="canvia-aquest-valor-en-produccio"
 ```
 
+## Prompts
+
+
+
+- `Crea una aplicacio full-stack amb Next.js 16 (App Router), Prisma i PostgreSQL per una empresa de lloguer de campers. Implementa arquitectura en capes (routes -> controllers -> services), validacio de dades, gestio d'errors i separacio clara de responsabilitats.`
+
+- `Implementa autenticacio amb Auth.js (credentials) i sessions JWT. Afegeix rols ADMIN i EDITOR, proteccio de rutes /admin amb middleware/proxy, i control de permisos per endpoint: comentaris nomes autenticats, gestio de models per EDITOR/ADMIN i gestio de rols nomes ADMIN.`
+
+- `Construeix un backoffice complet per campers amb CRUD: llistat, alta, edicio i baixa. El model camper ha de tenir slug unic, nom, descripcio curta i llarga, preu/dia, places, llits, transmissio, combustible, imageUrl i isPublished. Inclou formularis robustos i missatges d'error clars.`
+
+- `Crea la part publica amb landing premium, cataleg de campers i pagina de detall per slug. Mostra cards amb imatge, especificacions i preu. Al detall, afegeix comentaris ordenats per data i formulari per crear comentari amb comprovacio de sessio.`
+
+- `Aplica disseny dark modern i responsive amb una UI consistent entre zona publica i admin: capcalera global, targetes amb jerarquia visual, bon contrast, estat actiu al menu i components reutilitzables.`
+
+
+
 ## Execucio local
 
 1. Instal lar dependencies:
