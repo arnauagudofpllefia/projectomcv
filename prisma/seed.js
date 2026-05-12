@@ -76,56 +76,106 @@ async function main() {
     skipDuplicates: true,
   });
 
-  await prisma.camperModel.createMany({
-    data: [
-      {
-        slug: "atlas-nomad",
-        name: "Atlas Nomad",
-        shortDescription: "Camper compacta ideal per a escapades de cap de setmana.",
-        description:
-          "Model agile i facil de conduir, amb llit doble, cuina integrada i espai de maleter modular.",
-        dailyPrice: 95,
-        seats: 4,
-        beds: 2,
-        transmission: "Manual",
-        fuelType: "Diesel",
-        imageUrl: null,
-        isPublished: true,
-        authorId: editor.id,
-      },
-      {
-        slug: "sierra-family-xl",
-        name: "Sierra Family XL",
-        shortDescription: "Pensada per families amb gran capacitat i confort.",
-        description:
-          "Inclou quatre places per dormir, taula interior, nevera gran i calefaccio estacionaria.",
-        dailyPrice: 145,
-        seats: 5,
-        beds: 4,
-        transmission: "Automatica",
-        fuelType: "Diesel",
-        imageUrl: null,
-        isPublished: true,
-        authorId: admin.id,
-      },
-      {
-        slug: "coastal-easy",
-        name: "Coastal Easy",
-        shortDescription: "Opcio economica per a rutes costaneres i viatges curts.",
-        description:
-          "Camper versatil amb dos llits, connexio USB, tendal exterior i consum ajustat.",
-        dailyPrice: 79,
-        seats: 4,
-        beds: 2,
-        transmission: "Manual",
-        fuelType: "Gasolina",
-        imageUrl: null,
-        isPublished: true,
-        authorId: editor.id,
-      },
-    ],
-    skipDuplicates: true,
-  });
+  const camperSeeds = [
+    {
+      slug: "atlas-nomad",
+      name: "Atlas Nomad",
+      shortDescription: "Camper compacta ideal per a escapades de cap de setmana.",
+      description:
+        "Model agile i facil de conduir, amb llit doble, cuina integrada i espai de maleter modular.",
+      dailyPrice: 95,
+      seats: 4,
+      beds: 2,
+      transmission: "Manual",
+      fuelType: "Diesel",
+      imageUrl: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80",
+      isPublished: true,
+      authorId: editor.id,
+    },
+    {
+      slug: "sierra-family-xl",
+      name: "Sierra Family XL",
+      shortDescription: "Pensada per families amb gran capacitat i confort.",
+      description:
+        "Inclou quatre places per dormir, taula interior, nevera gran i calefaccio estacionaria.",
+      dailyPrice: 145,
+      seats: 5,
+      beds: 4,
+      transmission: "Automatica",
+      fuelType: "Diesel",
+      imageUrl: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80",
+      isPublished: true,
+      authorId: admin.id,
+    },
+    {
+      slug: "coastal-easy",
+      name: "Coastal Easy",
+      shortDescription: "Opcio economica per a rutes costaneres i viatges curts.",
+      description:
+        "Camper versatil amb dos llits, connexio USB, tendal exterior i consum ajustat.",
+      dailyPrice: 79,
+      seats: 4,
+      beds: 2,
+      transmission: "Manual",
+      fuelType: "Gasolina",
+      imageUrl: "https://images.unsplash.com/photo-1544829099-b9a0c5303bea?auto=format&fit=crop&w=1200&q=80",
+      isPublished: true,
+      authorId: editor.id,
+    },
+    {
+      slug: "glacier-pro-4x4",
+      name: "Glacier Pro 4x4",
+      shortDescription: "Preparada per rutes de muntanya i terreny exigent.",
+      description:
+        "Traccio integral, aillament premium i equipament complet per escapades de llarga distancia.",
+      dailyPrice: 165,
+      seats: 4,
+      beds: 3,
+      transmission: "Automatica",
+      fuelType: "Diesel",
+      imageUrl: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80",
+      isPublished: true,
+      authorId: admin.id,
+    },
+    {
+      slug: "urban-weekender",
+      name: "Urban Weekender",
+      shortDescription: "Perfecta per city breaks i caps de setmana curts.",
+      description:
+        "Mida compacta, interior modulable i consum contingut per moure't comodament.",
+      dailyPrice: 88,
+      seats: 4,
+      beds: 2,
+      transmission: "Manual",
+      fuelType: "Gasolina",
+      imageUrl: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80",
+      isPublished: true,
+      authorId: editor.id,
+    },
+    {
+      slug: "sunrise-lounge",
+      name: "Sunrise Lounge",
+      shortDescription: "Confort premium amb gran espai interior i acabats top.",
+      description:
+        "Llits amplis, cuina completa i zona lounge per viatges familiars amb maxima comoditat.",
+      dailyPrice: 175,
+      seats: 5,
+      beds: 4,
+      transmission: "Automatica",
+      fuelType: "Diesel",
+      imageUrl: "https://images.unsplash.com/photo-1520072959219-c595dc870360?auto=format&fit=crop&w=1200&q=80",
+      isPublished: true,
+      authorId: admin.id,
+    },
+  ];
+
+  for (const camper of camperSeeds) {
+    await prisma.camperModel.upsert({
+      where: { slug: camper.slug },
+      update: camper,
+      create: camper,
+    });
+  }
 
   const atlas = await prisma.camperModel.findUnique({ where: { slug: "atlas-nomad" } });
   const sierra = await prisma.camperModel.findUnique({ where: { slug: "sierra-family-xl" } });

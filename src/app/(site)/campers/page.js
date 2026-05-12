@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
@@ -28,6 +29,11 @@ export default async function CampersPage() {
                 href={`/campers/${camper.slug}`}
                 className="block rounded-2xl border border-cyan-100/20 bg-slate-900/65 p-5 shadow-[0_8px_30px_rgba(0,0,0,0.35)] hover:border-cyan-300/45"
               >
+                {camper.imageUrl ? (
+                  <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-xl">
+                    <Image src={camper.imageUrl} alt={camper.name} fill className="object-cover" />
+                  </div>
+                ) : null}
                 <h2 className="font-semibold text-slate-100">{camper.name}</h2>
                 <p className="mt-1 text-sm text-slate-300">{camper.shortDescription}</p>
                 <div className="mt-4 flex items-center justify-between text-sm text-slate-300">

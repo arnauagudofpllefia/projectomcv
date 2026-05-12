@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ContactForm from "@/components/contact/contact-form";
 import { prisma } from "@/lib/prisma";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
@@ -63,6 +64,11 @@ export default async function Home() {
             {featured.map((camper) => (
               <li key={camper.id}>
                 <Link href={`/campers/${camper.slug}`} className="block rounded-xl border border-cyan-100/20 bg-slate-950/45 p-4 hover:border-cyan-300/45">
+                  {camper.imageUrl ? (
+                    <div className="relative mb-3 aspect-[4/3] overflow-hidden rounded-lg">
+                      <Image src={camper.imageUrl} alt={camper.name} fill className="object-cover" />
+                    </div>
+                  ) : null}
                   <h3 className="font-semibold text-slate-100">{camper.name}</h3>
                   <p className="mt-1 text-xs text-slate-400">{camper.shortDescription}</p>
                   <p className="mt-3 text-sm font-semibold text-cyan-300">{camper.dailyPrice} EUR / dia</p>
@@ -72,7 +78,7 @@ export default async function Home() {
           </ul>
         </article>
 
-        <section id="contacte" className="space-y-4">
+        <section id="contacte" className="space-y-4 rounded-2xl border border-cyan-100/20 bg-slate-900/60 p-6">
           <h2 className="text-2xl font-bold text-white">Reserva la teva furgoneta</h2>
           <p className="text-slate-300">Envia una sollicitud i et respondrem amb disponibilitat real en menys de 24 h.</p>
           <ContactForm />
