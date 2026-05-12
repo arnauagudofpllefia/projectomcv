@@ -1,6 +1,7 @@
 import { Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
+import GlobalHeader from "@/components/navigation/global-header";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -24,7 +25,10 @@ export default function RootLayout({ children }) {
       className={`${spaceGrotesk.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Providers>{children}</Providers>
+        <Providers>
+          <GlobalHeader />
+          {children}
+        </Providers>
       </body>
     </html>
   );

@@ -15,7 +15,7 @@ export default function AdminLayout({ children }) {
 
   return (
     <>
-      <header className="flex flex-wrap items-center gap-4 border-b bg-gray-50 px-4 py-3">
+      <div className="mx-auto mt-4 flex w-full max-w-6xl flex-wrap items-center gap-4 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
         <Link href="/campers" className="text-blue-600 hover:underline">
           Cataleg public
         </Link>
@@ -32,8 +32,8 @@ export default function AdminLayout({ children }) {
         >
           Tancar sessio
         </button>
-      </header>
-      <div className="mx-auto max-w-4xl p-4">{children}</div>
+      </div>
+      <div className="mx-auto max-w-6xl p-4">{children}</div>
     </>
   );
 }
